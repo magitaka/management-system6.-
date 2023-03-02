@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+body          {
+  color: black;
+}
+
+label{
+  display: inline-block;
+  text-align: left;
+  width: 150px;
+}
+
+input[type=text], input[type=date] , 
+  select[name=club] , input[id=number] , textarea[name=self-int]{
+  width: 280px;
+  height: 30px;
+}
+
+form          {
+  margin-right: 800px;
+  height: 400px;
+  background-color: rgba(128, 128, 128, 0.596);
+}
+
+div            {
+  padding: 10px;
+}
+
+input[type=submit] {
+  width: 80px;
+  height: 35px;
+  margin-left: 500px;
+}

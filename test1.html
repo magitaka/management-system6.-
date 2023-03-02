@@ -1,0 +1,52 @@
+<!DOCTYPE html> 
+<html lang="ja"> 
+    <head> 
+      <meta charset="UTF-8"> 
+      <title>クラス名簿登録</title> 
+    </head> 
+    <head> 
+      <link rel="stylesheet" href="sample2.css"> 
+  </head>
+  <body>
+    <header>
+        <h1>クラス名簿登録</h1>
+    </header>
+  </body>
+
+  <form>
+
+    <div class = "class-name">
+      <label for="yourname">名前</label> 
+      <input type="text" name="yourname" placeholder="名前を入力">
+    </div>
+    <div class = "class-name">
+      <label for="nickname">ニックネーム</label> 
+      <input type="text" name="nickname" placeholder="ニックネームを入力">
+    </div>
+    <div class = "class-name">
+      <label for="birthday">生年月日</label> 
+      <input type="date" name="birthday">
+    </div>
+    <div>
+      <label for="club">部活動</label>
+      <select name="club">
+        <option value="kitaku"selected>帰宅</option>
+        <option value="soccer">サッカー</option>>
+        <option value="basketball">バスケ</option>>
+        <option value="baseball">野球</option>>
+        <option value="rugby">ラグビー</option>>
+      </select>
+    </div>
+    <div class = "class-name">
+      <label for="number">好きな数字</label>
+      <input id="number" type="number" value="1">
+    </div>
+    <div class = "class-name">
+      <label for="self-int">自己紹介</label>
+      <textarea name="self-int" placeholder="自己紹介"></textarea>
+    </div>
+    <div> 
+      <input type="submit" value="送信">
+    </div>
+  </form>
+</html> 

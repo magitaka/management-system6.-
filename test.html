@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>アカウント登録</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style>
+          .base {
+            margin: 2% 7% 0;
+            height: 500px;
+            background: blue;
+            padding: 5% 10%;
+            box-shadow: 5px 9px 8px 5px rgba(0, 0, 0, 0.5);
+          }
+          input {
+            width: 300px;
+            height: 40px;
+            font-size: large;
+          }
+          #tuikaBtn {
+            background: green;
+          }
+          h1 {
+            font-family: serif;
+          }
+          .form-control::placeholder {
+              color: #cacaca;
+              opacity: 1;
+          }
+          table {
+            border-collapse: collapse; 
+          }
+
+          th,td {
+            border: 1px solid #312929;
+            padding: 5px 10px;
+          }
+          .card {
+            width: 100%;
+            height: 350px;
+          }
+          .back{
+            padding: 30px;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+          }
+          .form-group{
+            margin: 10px 0 15px 0px;
+          }
+          #result {
+            font-size: 120%;
+            margin: 10;
+            margin: 10px 20px;
+            padding: 10px 5px 20px;
+            margin: 10px 5px 10px 5px;
+          }
+
+          .row .card{
+            color: red;
+          }
+
+          .card{
+            color: blue;
+            display: block;
+            position: relative;
+          }
+
+          #modal{
+            display: none;
+            margin:1.5em auto 0;
+            background-color: white;
+            border: 1px solid black;
+            width: 50%;
+            padding: 10px 20px;
+            position: fixed;
+            border-radius: 5px;
+          }
+
+          #overLay{
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120%;
+            background-color: rgba(0,0,0,0.75);
+          }
+
+        </style>
+    </head>
+    <body>
+        <div class="base container">
+          <div class="row">
+            <h1>アカウント登録</h1>
+          </div>
+          <div class="row">
+            <div class="card" id="card">
+              <div class="card-block">
+                <form id="form-area" class="form-inline" method="post">
+                    <div class="form-group">
+                        <div class="input-group">
+                          <input id="namae" name="namae" type="text" class="form-control" placeholder="名前">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input id="nickname" name="nickname" type="text" class="form-control" placeholder="ニックネーム">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                      <input id="tuikaBtn" type="button" name="touroku" value="追加">
+                    </div>
+                </form>
+                <div id="tuikaMoto">
+
+                </div>
+                <div id="result"></div>
+              </div>
+            </div>
+          </div>  
+        </div>
+      </div>
+      <div id="overLay">
+      </div>
+          <script>
+            // ここに処理を書いていきます。
+            let button = document.getElementById("tuikaBtn");
+            let tuikaTimes = 0;                                        //
+            button.addEventListener("click",function(e) {
+            e.preventDefault();
+
+            let namae = document.getElementById("namae").value;        //名前要素の取得
+            let nickname = document.getElementById("nickname").value;  //ニックネーム要素の取得
+            let tuikaBtn = document.getElementById('tuikaBtn');        //追加ボタンの取得
+            
+            if(namae == "" || nickname == "") {                        //もし空欄だったら
+              return false;                                            //falseで返す
+            }else{                                                     //それ以外の場合 
+              let res = window.confirm ('「' + namae +'さん' + nickname+'を登録します。よろしいですか？」');  //ダイアログの表示
+              if(res){                                                 //レスポンスがあったら
+                let result = document.getElementById("result");        //結果の取得
+                let table = document.createElement("table");           //テーブルの作成
+                let tr = document.createElement("tr");                 //表の行部分
+                let td = document.createElement("td");                 //表のセル
+                let delBtn = document.createElement("button");
+
+                result.appendChild(table);                             //テーブルに結果を追加する
+                table.appendChild(tr);                                 //テーブルに表を追加
+                tr.appendChild(td);                                    //表にセルを追加
+                tr.appendChild(delBtn);
+                delBtn.innerHTML = "削除";
+                
+                window.alert('「' + namae + 'さん' + nickname + 'にて登録しました。」');  //アラートを出す
+                td.textContent = (namae + 'さん' + nickname);         //namaeとnicknameを表示
+                
+                tuikaTimes++;                                            //カウント１
+                if(tuikaTimes >= 3) {                                    //カウント３以上なら
+                  tuikaBtn.style.visibility = "hidden";                  //表示の視認性を隠す
+                  return true;                                              //trueで返す
+                }
+
+                delBtn.addEventListener("click", ()=>{
+                  result.removeChild(table);
+                  table.removeChild(tr);
+                  tr.removeChild(td);
+                  tr.removeChild(delBtn);
+
+                  tuikaTimes--;
+                  if(tuikaTimes < 3) {
+                    tuikaBtn.style.visibility = "visible";
+                  }
+                });
+              }
+            }
+            });
+          </script>
+    </body>
+</html>
